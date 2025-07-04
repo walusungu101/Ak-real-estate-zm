@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Property Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .back-home-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .back-home-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .property-card {
+            display: flex;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .property-images {
+            flex: 1;
+            min-width: 50%;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 5px;
+            padding: 5px;
+            background: #f1f1f1;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover {
+            border-color: #4CAF50;
+        }
+        
+        .property-details {
+            flex: 1;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .property-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #222;
+            font-weight: 600;
+        }
+        
+        .property-address {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .property-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .feature i {
+            color: #4CAF50;
+        }
+        
+        .property-description {
+            margin-bottom: 25px;
+            color: #555;
+            font-weight: 300;
+        }
+        
+        .contact-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .contact-btn:hover {
+            background-color: #45a049;
+        }
+        
+        @media (max-width: 768px) {
+            .property-card {
+                flex-direction: column;
+            }
+            
+            .price-tag {
+                position: static;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../properties.html" class="back-home-btn">More Properties</a>
+        
+        <div class="property-card">
+            <div class="property-images">
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Modern House" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Thumbnail 1" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Thumbnail 2" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Thumbnail 3" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Thumbnail 4" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            <div class="property-details">
+                <div class="price-tag">$1,250,000</div>
+                <h1 class="property-title">Modern Luxury Villa</h1>
+                <p class="property-address">123 Palm Street, Beverly Hills, CA 90210</p>
+                
+                <div class="property-features">
+                    <div class="feature">
+                        <i>🛏️</i> <span>5 Bedrooms</span>
+                    </div>
+                    <div class="feature">
+                        <i>🚿</i> <span>4 Bathrooms</span>
+                    </div>
+                    <div class="feature">
+                        <i>📏</i> <span>3,500 sq ft</span>
+                    </div>
+                    <div class="feature">
+                        <i>🚗</i> <span>2 Garage</span>
+                    </div>
+                    <div class="feature">
+                        <i>🏊</i> <span>Pool</span>
+                    </div>
+                </div>
+                
+                <p class="property-description">
+                    This stunning modern villa offers luxury living at its finest. Featuring an open floor plan with floor-to-ceiling windows, a gourmet kitchen with premium appliances, and a spacious master suite with walk-in closet. The backyard oasis includes a sparkling pool, outdoor kitchen, and lush landscaping. Located in one of the most desirable neighborhoods with top-rated schools nearby.
+                </p>
+                
+                <button class="contact-btn">Contact Agent</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = element.src;
+        }
+    </script>
+</body>
+</html>
