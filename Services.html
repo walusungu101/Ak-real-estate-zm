@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Real Estate Services | A.K Real Estates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+         <link rel="icon" type="images/png" href="images/logo.png">
+    <style>
+        :root {
+            --primary: #1a2a4a;
+            --secondary: #d4af37;
+            --accent: #3a7bd5;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #3a4b6b 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26, 42, 74, 0.8), rgba(26, 42, 74, 0.8)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .services {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .card-header img {
+            transform: scale(1.1);
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .card-body p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .features-list {
+            margin-bottom: 1.5rem;
+        }
+        
+        .features-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            list-style-type: none;
+        }
+        
+        .features-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--success);
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #666;
+        }
+        
+        .testimonials {
+            background-color: var(--light);
+            padding: 5rem 0;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 1rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1.5rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .back-btn {
+            margin: 60px 0 40px;
+            text-align: center;
+        }
+
+        .back-btn a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px 25px;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .back-btn a:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+          .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+ <div class="container">
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="images/logo.png" alt="A.K Real Estates Logo" style="height: 60px; margin-right: 10px;">
+                <span style="font-size: 27px; font-weight: bold; color: #378ec0;">A.K Real Estates</span>
+            </a>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+   
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Your Trusted Real Estate Partner</h2>
+            <p>Discover premium properties and prime land investments tailored to your needs with A.K Real Estates. We turn your property dreams into reality.</p>
+            <a href="#properties" class="btn">Explore Properties</a>
+            <a href="Contact.html" class="btn btn-outline">Contact Us</a>
+        </div>
+    </section>
+    
+    <section class="services">
+        <div class="container">
+            <div class="section-title" id="properties">
+                <h2>Our Premium Services</h2>
+                <p>At A.K Real Estates, we offer comprehensive real estate solutions designed to meet your investment and lifestyle needs.</p>
+            </div>
+             <div class="container back-btn">
+        <a href="index.html">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Luxury Property">
+                        <div class="card-badge">Featured</div>
+                    </div>
+                    <div class="card-body" >
+                        <h3>Premium Properties</h3>
+                        <p>Discover our curated selection of luxury homes, apartments, and commercial properties in prime locations.</p>
+                        
+                        <ul class="features-list">
+                            <li>Exclusive listings in top neighborhoods</li>
+                            <li>360° virtual tours for remote viewing</li>
+                            <li>Personalized property matching</li>
+                            <li>Complete legal and documentation support</li>
+                            <li>After-sale services and maintenance</li>
+                        </ul>
+                        
+                        <div class="card-footer">
+                            <div class="price">
+                                $250,000+ <span>starting from</span>
+                            </div>
+                            <a href="#" class="btn">View Properties</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Land for Sale">
+                        <div class="card-badge">Investment</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Prime Land Sales</h3>
+                        <p>Secure your future with strategic land investments in developing areas with high growth potential.</p>
+                        
+                        <ul class="features-list">
+                            <li>Verified titles and clear documentation</li>
+                            <li>Strategic locations with future appreciation</li>
+                            <li>Customizable plot sizes to suit your needs</li>
+                            <li>Infrastructure development insights</li>
+                            <li>Joint venture opportunities available</li>
+                        </ul>
+                        
+                        <div class="card-footer">
+                            <div class="price">
+                                $50,000+ <span>per acre</span>
+                            </div>
+                            <a href="#" class="btn">Explore Land</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Property Management">
+                        <div class="card-badge">Service</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Complete Real Estate Solutions</h3>
+                        <p>From property valuation to closing deals, we provide end-to-end services for all your real estate needs.</p>
+                        
+                        <ul class="features-list">
+                            <li>Professional property valuation</li>
+                            <li>Market analysis and investment advice</li>
+                            <li>Property management services</li>
+                            <li>Legal and financial consultation</li>
+                            <li>Dedicated client relationship manager</li>
+                        </ul>
+                        
+                        <div class="card-footer">
+                            <div class="price">
+                                Custom <span>pricing</span>
+                            </div>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p>Hear what our satisfied clients say about their experience with A.K Real Estates.</p>
+            </div>
+            
+            <!-- Testimonial content would go here -->
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About A.K Real Estates</h3>
+                    <p>With over 10 years of experience in the real estate industry, we've helped thousands of clients find their dream properties and make sound investments.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/2021akrealestates"><i class="fab fa-facebook-f"></i></a>
+                      
+                        <a href="https://www.linkedin.com/in/a-k-real-estates-ab2b26210/?originalSubdomain=zm"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/a.k.realestates/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#">Home</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Services</a>
+                    <a href="#">Properties</a>
+                    <a href="#">Land for Sale</a>
+                    <a href="#">Contact</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Lusaka, Chamba Valley, Lubwe Road, Zambia, 10101</p>
+                    <p><i class="fas fa-phone"></i> (+260) 973 571 307</p>
+                    <p><i class="fas fa-envelope"></i> alrealesteszambia@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 8AM - 6PM</p>
+                </div>
+            </div>
+               <!-- WhatsApp Button -->
+    <a href="https://wa.me/260973571307?text=Hello%20A.K%20Real%20Estates,%20I'm%20interested%20in%20one%20of%20your%20properties..." 
+       class="whatsapp-btn" 
+       target="_blank"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+            
+            <div class="copyright">
+                <p>&copy; 2023 A.K Real Estates. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> by A.K Team</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

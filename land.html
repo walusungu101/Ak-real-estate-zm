@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Land Listings | A.K Real Estates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a2a4a;
+            --secondary: #d4af37;
+            --accent: #3a7bd5;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .lands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .land-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .land-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .land-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .land-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .land-card:hover .land-image img {
+            transform: scale(1.05);
+        }
+        
+        .land-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .land-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .land-details {
+            padding: 1.5rem;
+        }
+        
+        .land-details h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .land-location {
+            display: flex;
+            align-items: center;
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .land-location i {
+            margin-right: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .land-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature i {
+            margin-right: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .feature span {
+            font-size: 0.9rem;
+        }
+        
+        .land-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .land-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #666;
+        }
+        
+        .land-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .lands-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+                 .back-btn {
+            margin: 60px 0 40px;
+            text-align: center;
+        }
+
+        .back-btn a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px 25px;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .back-btn a:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+          <!-- Back Button -->
+    <div class="container back-btn">
+        <a href="index.html">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+            <h1>Prime Land Listings</h1>
+            <p>Discover premium land parcels in Zambia's most promising locations for residential, commercial, and agricultural development.</p>
+        </header>
+        
+        <div class="lands-grid">
+            <!-- Land 1 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Chamba Valley Land">
+                    <div class="land-badge">Featured</div>
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Residential Plot in Chamba Valley</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lusaka, Chamba Valley</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>2,500 m²</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-road"></i>
+                            <span>Road Access</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tint"></i>
+                            <span>Water Available</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Electricity</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $150,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 2 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Agricultural Land">
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Agricultural Land in Chongwe</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Chongwe, 30km from Lusaka</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>50 Hectares</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-water"></i>
+                            <span>River Frontage</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tractor"></i>
+                            <span>Arable Soil</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-road"></i>
+                            <span>Good Access</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $350,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 3 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Commercial Plot">
+                    <div class="land-badge">Prime</div>
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Commercial Plot in CBD</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lusaka Central Business District</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>1,000 m²</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-building"></i>
+                            <span>High Density</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-road"></i>
+                            <span>Main Road</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Utilities Ready</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $450,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 4 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Leopards Hill Land">
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Residential Plot in Leopards Hill</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lusaka, Leopards Hill</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>1 Acre</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-mountain"></i>
+                            <span>Hilltop View</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Gated Community</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tint"></i>
+                            <span>Borehole</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $220,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 5 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Farm Land">
+                    <div class="land-badge">Estate</div>
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Farm Land in Kafue</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kafue, 50km from Lusaka</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>100 Hectares</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-water"></i>
+                            <span>River Frontage</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-campground"></i>
+                            <span>Wildlife</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tractor"></i>
+                            <span>Partially Cleared</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $500,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 6 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Industrial Plot">
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Industrial Plot in Lusaka South</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lusaka South Multi-Facility Zone</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>5 Acres</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-industry"></i>
+                            <span>Zoned Industrial</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-road"></i>
+                            <span>Major Highway</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-train"></i>
+                            <span>Rail Access</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $750,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 7 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Waterfront Land">
+                    <div class="land-badge">Premium</div>
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Waterfront Plot in Siavonga</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Siavonga, Lake Kariba</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>2 Hectares</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-water"></i>
+                            <span>Lake Frontage</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-umbrella-beach"></i>
+                            <span>Tourism Potential</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-fish"></i>
+                            <span>Fishing Rights</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $600,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 8 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Suburban Plot">
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Residential Plot in Woodlands</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lusaka, Woodlands</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>1,200 m²</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-road"></i>
+                            <span>Paved Road</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Electricity</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tint"></i>
+                            <span>Water Mains</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $180,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 9 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Mining Land">
+                    <div class="land-badge">Investment</div>
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Mineral Rights Land</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Copperbelt Province</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>500 Hectares</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-gem"></i>
+                            <span>Mineral Rights</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-road"></i>
+                            <span>Access Road</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-file-contract"></i>
+                            <span>All Documents</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $1,200,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Land 10 -->
+            <div class="land-card">
+                <div class="land-image">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Rural Land">
+                    <div class="land-status">For Sale</div>
+                </div>
+                <div class="land-details">
+                    <h3>Rural Development Land</h3>
+                    <div class="land-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Eastern Province</span>
+                    </div>
+                    <div class="land-features">
+                        <div class="feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>200 Hectares</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-water"></i>
+                            <span>River Access</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-leaf"></i>
+                            <span>Fertile Soil</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-sun"></i>
+                            <span>Solar Potential</span>
+                        </div>
+                    </div>
+                    <div class="land-price">
+                        $300,000 <span>| negotiable</span>
+                    </div>
+                    <div class="land-actions">
+                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn btn-outline">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/260973571307?text=Hello%20A.K%20Real%20Estates,%20I'm%20interested%20in%20one%20of%20your%20land%20listings..." 
+       class="whatsapp-btn" 
+       target="_blank"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>
