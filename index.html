@@ -1794,8 +1794,12 @@
        aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+    <div id="netlify-identity-widget"></div>
+
 
     <script>
+
+        
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileNav = document.getElementById('mobileNav');
@@ -1916,5 +1920,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
     </script>
+    <!-- Add this just before closing </body> tag -->
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+    window.netlifyIdentity.init();
+  }
+</script>
+
 </body>
 </html>
