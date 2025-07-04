@@ -1,10 +1,88 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Content Manager</title>
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  </head>
-  <body>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Content Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Content Manager</h1>
+    <form id="property-form">
+      <input type="text" id="title" placeholder="Property Title" required />
+      <input type="text" id="location" placeholder="Location" required />
+      <input type="number" id="price" placeholder="Price" required />
+      <textarea id="description" placeholder="Description" required></textarea>
+      <button type="submit">Add Property</button>
+    </form>
+
+    <h2>All Listings</h2>
+    <div id="property-list"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.property {
+  background: #f0f0f0;
+  padding: 15px;
+  margin-top: 15px;
+  border-left: 5px solid #2c3e50;
+}
+
+</style>
+<script>
+  document.getElementById("property-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const location = document.getElementById("location").value;
+  const price = document.getElementById("price").value;
+  const description = document.getElementById("description").value;
+
+  const propertyHTML = `
+    <div class="property">
+      <h3>${title}</h3>
+      <p><strong>Location:</strong> ${location}</p>
+      <p><strong>Price:</strong> K${price}</p>
+      <p>${description}</p>
+    </div>
+  `;
+
+  document.getElementById("property-list").innerHTML += propertyHTML;
+
+  document.getElementById("property-form").reset();
+});
+
+</script>
