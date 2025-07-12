@@ -15,7 +15,14 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Price", name: "price", widget: "string" }
+      - { label: "Negotiable", name: "negotiable", widget: "boolean", default: true }
       - { label: "Location", name: "location", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
-      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Status", name: "status", widget: "string" }
+      - { label: "Badge", name: "badge", widget: "string", required: false }
+      - { label: "Beds", name: "beds", widget: "number", required: false }
+      - { label: "Baths", name: "baths", widget: "number", required: false }
+      - { label: "Garage", name: "garage", widget: "number", required: false }
+      - { label: "Size", name: "size", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
 
