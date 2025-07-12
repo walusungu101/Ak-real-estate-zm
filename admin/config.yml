@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: walusungu101/Ak-real-estate-zm
-  # <-- change this
-  branch: main  # or master
+  name: git-gateway
+  branch: main
 
 media_folder: "images/uploads"       # images will go here
 public_folder: "/images/uploads"
@@ -19,4 +17,3 @@ collections:
       - { label: "Location", name: "location", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Description", name: "body", widget: "markdown" }
-
