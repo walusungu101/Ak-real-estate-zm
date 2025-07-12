@@ -1,9 +1,12 @@
-title: AK Real Estate
+title: My Real Estate Site
+baseurl: ""
+url: "https://your-netlify-site.netlify.app"
+
 markdown: kramdown
 theme: minima
 
 collections:
   properties:
     output: true
-    permalink: /properties/:slug/
 
+permalink: /properties/:slug/
