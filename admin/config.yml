@@ -1,5 +1,6 @@
 backend:
   name: github
+  repo: walusungu101/Ak-real-estate-zm   # ✅ Required!
   branch: main
 
 media_folder: "images/uploads"       # images will go here
@@ -17,3 +18,4 @@ collections:
       - { label: "Location", name: "location", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Description", name: "body", widget: "markdown" }
+
