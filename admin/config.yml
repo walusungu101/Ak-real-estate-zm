@@ -8,18 +8,17 @@ logo_url: /images/logo.png                         # Optional CMS login logo
 
 media_folder: "images/uploads"       # Where uploaded images go in repo
 public_folder: "/images/uploads"     # How images appear on the website
-
 collections:
   - name: "properties"
     label: "Properties"
     label_singular: "Property"
     folder: "properties"
     create: true
-    slug: "{{slug}}"                 # This becomes the .md file name
+    slug: "{{slug}}"
     preview_path: "properties/{{slug}}"
     format: "yaml-frontmatter"
     extension: "md"
-      output: true
+    output: true          # <-- HERE, aligned with above keys
     permalink: /properties/:slug/
     fields:
       - { label: "Title", name: "title", widget: "string" }
