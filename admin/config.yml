@@ -1,17 +1,26 @@
 backend:
   name: github
-  repo: walusungu101/Ak-real-estate-zm   # ✅ Required!
+  repo: walusungu101/Ak-real-estate-zm   # ✅ Replace with your actual repo if different
   branch: main
 
-media_folder: "images/uploads"       # images will go here
-public_folder: "/images/uploads"
+site_url: https://ak-real-estate-zm.netlify.app   # ✅ Update this to your Netlify site URL
+logo_url: /images/logo.png                         # Optional CMS login logo
+
+media_folder: "images/uploads"       # Where uploaded images go in repo
+public_folder: "/images/uploads"     # How images appear on the website
 
 collections:
   - name: "properties"
     label: "Properties"
+    label_singular: "Property"
     folder: "properties"
     create: true
-    slug: "{{slug}}"
+    slug: "{{slug}}"                 # This becomes the .md file name
+    preview_path: "properties/{{slug}}"
+    format: "yaml-frontmatter"
+    extension: "md"
+      output: true
+    permalink: /properties/:slug/
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Price", name: "price", widget: "string" }
@@ -25,4 +34,4 @@ collections:
       - { label: "Garage", name: "garage", widget: "number", required: false }
       - { label: "Size", name: "size", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
-
+      - { label: "Layout", name: "layout", widget: "hidden", default: "property" }
