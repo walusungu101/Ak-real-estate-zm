@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Ak-real-estate-zm
+  repo: walusungu101/Ak-real-estate-zm
   # <-- change this
   branch: main  # or master
 
