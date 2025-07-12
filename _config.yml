@@ -1,1 +1,9 @@
+title: AK Real Estate
+markdown: kramdown
+theme: minima
+
+collections:
+  properties:
+    output: true
+    permalink: /properties/:slug/
 
