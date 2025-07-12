@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.2"
 gem "github-pages", group: :jekyll_plugins
+# Remove explicit jekyll version here, github-pages gem will bring its own compatible jekyll
