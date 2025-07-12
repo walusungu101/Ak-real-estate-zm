@@ -1,6 +1,7 @@
 backend:
   name: github
-  repo: your-username/your-repo-name  # <-- change this
+  repo: Ak-real-estate-zm
+  # <-- change this
   branch: main  # or master
 
 media_folder: "images/uploads"       # images will go here
