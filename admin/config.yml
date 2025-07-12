@@ -1,1 +1,21 @@
+backend:
+  name: github
+  repo: your-username/your-repo-name  # <-- change this
+  branch: main  # or master
+
+media_folder: "images/uploads"       # images will go here
+public_folder: "/images/uploads"
+
+collections:
+  - name: "properties"
+    label: "Properties"
+    folder: "properties"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Description", name: "body", widget: "markdown" }
 
