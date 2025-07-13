@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 ---
 title: BabySitter
 price: K21,200
