@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Property Details - BabySitter</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 20px auto; padding: 10px; }
+    img { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <h1>BabySitter Property</h1>
+  <div id="property-info">
+    <p><strong>Loading property info...</strong></p>
+  </div>
+
+  <script>
+    fetch('/properties/babysitter.md')
+      .then(res => res.text())
+      .then(md => {
+        // Remove YAML front matter (between --- ... ---)
+        const content = md.replace(/^---[\s\S]*?---/, '').trim();
+
+        // Parse markdown to HTML
+        const html = marked.parse(content);
+
+        // For simplicity, also parse front matter manually:
+        const frontMatter = {};
+        const yamlMatch = md.match(/^---\n([\s\S]*?)\n---/);
+        if(yamlMatch) {
+          yamlMatch[1].split('\n').forEach(line => {
+            const [key, ...rest] = line.split(':');
+            if(key && rest.length) {
+              frontMatter[key.trim()] = rest.join(':').trim();
+            }
+          });
+        }
+
+        // Build display HTML with front matter and content
+        const infoHTML = `
+          <img src="${frontMatter.image}" alt="${frontMatter.title}" />
+          <h2>${frontMatter.title}</h2>
+          <ul>
+            <li><strong>Price:</strong> ${frontMatter.price}</li>
+            <li><strong>Negotiable:</strong> ${frontMatter.negotiable}</li>
+            <li><strong>Location:</strong> ${frontMatter.location}</li>
+            <li><strong>Status:</strong> ${frontMatter.status}</li>
+            <li><strong>Badge:</strong> ${frontMatter.badge}</li>
+            <li><strong>Beds:</strong> ${frontMatter.beds}</li>
+            <li><strong>Baths:</strong> ${frontMatter.baths}</li>
+            <li><strong>Size:</strong> ${frontMatter.size}</li>
+          </ul>
+          <div>${html}</div>
+        `;
+
+        document.getElementById('property-info').innerHTML = infoHTML;
+      })
+      .catch(err => {
+        document.getElementById('property-info').innerHTML = '<p>Error loading property info.</p>';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
 
