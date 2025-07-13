@@ -1,50 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>{{ page.title }}</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #333;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-    h1 {
-      color: #1a2a4a;
-    }
-    .property-info {
-      background: #f8f9fa;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-    }
-    .property-info p {
-      margin: 6px 0;
-    }
-  </style>
-</head>
-<body>
-  <h1>{{ page.title }}</h1>
-
-  <div class="property-info">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+  </head>
+  <body>
+    <h1>{{ page.title }}</h1>
     <p><strong>Price:</strong> {{ page.price }}</p>
+    <p><strong>Negotiable:</strong> {{ page.negotiable }}</p>
     <p><strong>Location:</strong> {{ page.location }}</p>
-    {% if page.image %}
-      <img src="{{ page.image }}" alt="{{ page.title }}">
-    {% endif %}
-  </div>
-
-  <div class="property-description">
-    {{ content | markdownify }}
-  </div>
-</body>
+    <p><strong>Status:</strong> {{ page.status }}</p>
+    <p><strong>Badge:</strong> {{ page.badge }}</p>
+    <p><strong>Beds:</strong> {{ page.beds }}</p>
+    <p><strong>Baths:</strong> {{ page.baths }}</p>
+    <p><strong>Size:</strong> {{ page.size }}</p>
+    <img src="{{ page.image }}" alt="{{ page.title }}" style="max-width: 300px;">
+    <div>{{ content }}</div>
+  </body>
 </html>
