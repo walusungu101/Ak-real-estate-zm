@@ -445,7 +445,20 @@
                     </div>
                 </div>
             </div>
-            
+            <div id="markdown-content"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  fetch('/properties/babysitter.md')
+    .then(response => response.text())
+    .then(text => {
+      document.getElementById('markdown-content').innerHTML = marked.parse(text);
+    })
+    .catch(() => {
+      document.getElementById('markdown-content').innerHTML = "Failed to load property description.";
+    });
+</script>
+
             <!-- Property 5 
             <div class="property-card">
                 <div class="property-image">
