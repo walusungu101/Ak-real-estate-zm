@@ -1,6 +1,6 @@
 title: My Real Estate Site
 baseurl: ""
-url: "https://your-netlify-site.netlify.app"
+url: "https://ak-real-estate-zm.netlify.app/"  # <- replace with your actual site URL
 
 markdown: kramdown
 theme: minima
@@ -8,5 +8,6 @@ theme: minima
 collections:
   properties:
     output: true
+    permalink: /properties/:slug/
 
-permalink: /properties/:slug/
+permalink: pretty
